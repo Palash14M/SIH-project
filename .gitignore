@@ -1,0 +1,22 @@
+# Operating System & Metadata
+.DS_Store
+._*
+Thumbs.db
+
+# Heavy local toolchains & binaries (exceeds GitHub 100MB limit)
+tools/jdk/
+tools/sdk/
+tools/php/
+tools/gradle-8.5/
+tools/*.zip
+tools/*.exe
+tools/*.dll
+
+# Android build outputs & local caches
+android/.gradle/
+android/app/build/
+android/local.properties
+.gradle/
+
+# Firebase hosting cache
+.firebase/

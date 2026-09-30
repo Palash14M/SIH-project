@@ -1,0 +1,15 @@
+tools/jdk
+tools/php
+tools/sdk
+tools/gradle-8.5
+tools/*.zip
+tools/*.exe
+tools/*.dll
+android/app/build
+android/.gradle
+.gradle
+.git
+.firebase
+preview/*.apk
+dist/*.bin
+dist/*.apk

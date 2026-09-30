@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Essential App Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Camera hardware requirement -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+
+    <!-- STRICT EVIDENCE INTEGRITY AUDIT: No READ_EXTERNAL_STORAGE, No READ_MEDIA_IMAGES -->
+
+    <application
+        android:name=".SmartInspectionApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SmartInspection"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SmartInspection.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.NgoRegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.CameraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.InspectionFormActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.TenderDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.TenderCreateActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.CsvImportActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.OfficerInspectionDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.NgoApprovalActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.DashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.AdminManagementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.NgoDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ContractorDashboardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.ComplaintCreateActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ComplaintActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.EscalationPaymentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.PublicTenderExplorerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.PublicNudgeActivity"
+            android:exported="false" />
+
+        <!-- File Provider for PDF and document sharing -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

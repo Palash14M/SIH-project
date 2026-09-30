@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Top Row: Category and Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvTenderCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roads &amp; Highways"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold"
+                android:textAllCaps="true" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvTenderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/accent_warning"
+                android:paddingHorizontal="@dimen/spacing_xs"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:text="IN_PROGRESS"
+                android:textColor="@color/surface"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tender Number & Title -->
+        <TextView
+            android:id="@+id/tvTenderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="TND-MH-NGP-2026-001"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tvTenderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xxs"
+            android:text="Ring Road Phase-3 Strengthening"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:maxLines="2" />
+
+        <!-- Progress Row & Time Remaining (Visible to Public and Staff) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvProgressPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Progress: 65%"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvTimeRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_rounded_border"
+                android:paddingHorizontal="@dimen/spacing_xs"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:text="⏱ 45 days remaining"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvVarianceBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="@color/accent_danger"
+                android:paddingHorizontal="@dimen/spacing_xs"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:text="⚠ VARIANCE > 10%"
+                android:textColor="@color/surface"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Role-Aware Staff & NGO Details (HIDDEN FROM PUBLIC) -->
+        <LinearLayout
+            android:id="@+id/layoutStaffDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:paddingTop="@dimen/spacing_xs"
+            android:background="#FAF9F8"
+            android:padding="@dimen/spacing_sm"
+            android:visibility="gone">
+
+            <!-- Contractor Contact Details -->
+            <TextView
+                android:id="@+id/tvContractorDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contractor: Larsen &amp; Infra • 📞 9822012345"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold" />
+
+            <!-- Assigned Field Inspector Contact Details -->
+            <TextView
+                android:id="@+id/tvInspectorDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Inspector: Rajesh M. • 📞 9100000009"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+
+            <!-- Allocated Budget vs Actual Spent -->
+            <TextView
+                android:id="@+id/tvBudgetDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Budget: ₹4.50 Cr | Spent: ₹3.65 Cr"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Master Admin Delete Button (Only shown for incomplete projects to Master Admin) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMasterDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="🗑️ Delete Project (Before Completion)"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/accent_danger"
+            android:textSize="@dimen/text_caption"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

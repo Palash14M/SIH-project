@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project MoSJE — Smart Tender Inspection App | Team CHAKRAVYUH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F76C45;
+            --primary-dark: #D9532B;
+            --dark: #110B0A;
+            --card-bg: #FFFFFF;
+            --page-bg: #F8F9FA;
+            --border: #E5E7EB;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --success: #10B981;
+            --accent: #2563EB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--page-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-bar {
+            width: 100%;
+            background: linear-gradient(135deg, #110B0A 0%, #2A1713 100%);
+            color: #FFFFFF;
+            padding: 28px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .emblem-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            margin-bottom: 12px;
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+        }
+
+        .header-sub {
+            font-size: 13px;
+            color: #FDBA74;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .team-badge {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(247, 108, 69, 0.25);
+            border: 1px solid var(--primary);
+            color: #FFEDD5;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 24px 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .download-box {
+            text-align: center;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF7ED 100%);
+            border: 2px solid #FED7AA;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #DEF7EC;
+            color: #03543F;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .app-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .app-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 0 6px 20px rgba(247, 108, 69, 0.4);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(247, 108, 69, 0.5);
+        }
+
+        .btn-download:active {
+            transform: translateY(1px);
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+            text-align: left;
+        }
+
+        .spec-item {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .spec-val {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 2px;
+            word-break: break-all;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-text h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .step-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 3px;
+            line-height: 1.4;
+        }
+
+        .creds-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .creds-table th, .creds-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .creds-table th {
+            background: #F3F4F6;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .creds-table tr:nth-child(even) {
+            background: #FAFAFA;
+        }
+
+        .badge-role {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 10px;
+            background: #E0E7FF;
+            color: #3730A3;
+        }
+
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            background: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-bar">
+        <img src="watermark_logo.png" alt="MoSJE Emblem" class="emblem-logo">
+        <h1 class="header-title">Project MoSJE</h1>
+        <div class="header-sub">Smart Tender Inspection System • Ministry of Social Justice and Empowerment</div>
+        <div class="team-badge">SIH26095 • Team CHAKRAVYUH</div>
+    </header>
+
+    <main class="container">
+
+        <!-- Download Hero Card -->
+        <div class="card download-box">
+            <div class="app-badge">✓ Verified & Signed APK • Latest Build</div>
+            <h2 class="app-title">Project MoSJE Release APK v1.1.0</h2>
+            <p class="app-meta">Smart Field Inspection, Contractor Hub & Master Deletion Control</p>
+
+            <a href="SmartInspection-MoSJE-release.apk" class="btn-download" download="SmartInspection-MoSJE-release.apk">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download Release APK (Direct)</span>
+            </a>
+
+            <a href="/preview" style="display:flex; align-items:center; justify-content:center; gap:10px; background:#111827; color:#FFFFFF; padding:14px 20px; border-radius:14px; text-decoration:none; font-weight:700; margin-top:12px; font-size:15px; border:1px solid #374151;">
+                <span>🌐 Open Live Interactive Web Portal & Preview</span>
+            </a>
+
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Package Name</div>
+                    <div class="spec-val">com.chakravyuh.smartinspection</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">File Size</div>
+                    <div class="spec-val">8.30 MB (8,308,005 bytes)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Build Timestamp</div>
+                    <div class="spec-val">26-09-2026 • Verified</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Release Version</div>
+                    <div class="spec-val">v1.1.0 (Android 8.0 - 14)</div>
+                </div>
+                <div class="spec-item" style="grid-column: span 2;">
+                    <div class="spec-label">Tunnel & Cloud Sync</div>
+                    <div class="spec-val" style="color:#10B981; font-weight:700;">Live Cloudflare Tunnel Active & Connected</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Updates in this Release -->
+        <div class="card" style="border-left: 4px solid var(--primary);">
+            <h3 class="section-title">✨ What's New in this Version</h3>
+            <div style="font-size: 13px; color: var(--text-main); line-height: 1.6;">
+                <p>• <b>👷 Contractor Operations Hub:</b> Ongoing project cards, assigned Inspecting Officer info with 1-tap call/email, site photo evidence gallery, and an interactive progress slider.</p>
+                <p>• <b>🗑️ Master Incomplete Project Deletion:</b> Master Admin can delete any ongoing project prior to 100% completion with complete relational cleanup.</p>
+                <p>• <b>🔒 Login Persistence:</b> Fixed role selector chip behavior so credentials are never cleared during selection.</p>
+                <p>• <b>🌐 Automatic Tunnel Discovery:</b> Seamless migration to active Cloudflare endpoints with zero manual configuration.</p>
+            </div>
+        </div>
+
+        <!-- Installation Instructions -->
+        <div class="card">
+            <h3 class="section-title">📱 Easy Installation Steps</h3>
+            <ul class="steps-list">
+                <li class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>Download the APK</h4>
+                        <p>Tap the orange <b>"Download Release APK"</b> button above on your Android phone.</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>Allow Unknown Sources (Standard Android Security)</h4>
+                        <p>When the download completes, tap the APK in your notification bar. If prompted with <i>"For your security, your phone is not allowed to install unknown apps"</i>, tap <b>Settings</b> and toggle ON <b>"Allow from this source"</b>.</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h4>Install & Launch</h4>
+                        <p>Tap <b>Install</b>. Once installed, tap <b>Open</b>. Select your official position and log in.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Official Seed Credentials Reference -->
+        <div class="card">
+            <h3 class="section-title">🔐 Official System Credentials</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">All accounts synchronized across mobile APK and web portal:</p>
+            <table class="creds-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Identifier / Email / Phone</th>
+                        <th>Password / Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge-role" style="background:#FEE2E2; color:#991B1B;">MASTER ADMIN</span></td>
+                        <td><b>admin</b> (or admin@mosje.gov.in)</td>
+                        <td><b>admin</b></td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role" style="background:#FEF3C7; color:#92400E;">CONTRACTOR</span></td>
+                        <td><b>contractor</b> (or contractor@larseninfra.com)</td>
+                        <td><b>demo@123</b></td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">INSPECTOR</span></td>
+                        <td>inspector.rajesh@mosje.gov.in (9900112233)</td>
+                        <td>demo@123</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">DISTRICT</span></td>
+                        <td>district.nagpur@mosje.gov.in (9765432190)</td>
+                        <td>demo@123</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">STATE</span></td>
+                        <td>state.mh@mosje.gov.in (9654321087)</td>
+                        <td>demo@123</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">MOSJE</span></td>
+                        <td>mosje.admin@gov.in</td>
+                        <td>demo@123</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">NGO</span></td>
+                        <td>demo.ngo@example.org</td>
+                        <td>demo@123</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-role">CITIZEN</span></td>
+                        <td>9821004567</td>
+                        <td>OTP: 123456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Core Features Compliance Card -->
+        <div class="card">
+            <h3 class="section-title">🛡️ Evidence Integrity & Security</h3>
+            <div style="font-size: 13px; color: var(--text-main); line-height: 1.6;">
+                <p>• <b>Camera-Only Pipeline:</b> Gallery pickers and external file choosers are blocked for field inspections.</p>
+                <p>• <b>Burned-In Watermark:</b> Official MoSJE emblem logo and real-time GPS coordinates are burned directly into image pixels.</p>
+                <p>• <b>Anti-Spoofing:</b> Enforces GPS accuracy &le; 100m, blocks mock locations, and validates server timestamps.</p>
+                <p>• <b>Offline Queue:</b> Idempotent UUID-keyed syncing prevents duplicate submissions in remote areas.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 Ministry of Social Justice and Empowerment, Government of India.<br>
+        Developed by <b>Team CHAKRAVYUH</b> for Smart India Hackathon (SIH26095).
+    </footer>
+
+</body>
+</html>

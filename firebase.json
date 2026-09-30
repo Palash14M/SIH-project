@@ -1,0 +1,188 @@
+{
+  "hosting": [
+    {
+      "target": "project-mosje",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/preview",
+          "destination": "/preview/index.html"
+        },
+        {
+          "source": "/preview/**",
+          "destination": "/preview/index.html"
+        },
+        {
+          "source": "/SmartInspection-MoSJE-release.apk",
+          "destination": "/SmartInspection-MoSJE-release.bin"
+        },
+        {
+          "source": "/download-apk",
+          "destination": "/SmartInspection-MoSJE-release.bin"
+        }
+      ],
+      "headers": [
+        {
+          "source": "/SmartInspection-MoSJE-release.apk",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/download-apk",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.bin",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "pihu-saree",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/preview",
+          "destination": "/preview/index.html"
+        },
+        {
+          "source": "/preview/**",
+          "destination": "/preview/index.html"
+        },
+        {
+          "source": "/SmartInspection-MoSJE-release.apk",
+          "destination": "/SmartInspection-MoSJE-release.bin"
+        },
+        {
+          "source": "/download-apk",
+          "destination": "/SmartInspection-MoSJE-release.bin"
+        }
+      ],
+      "headers": [
+        {
+          "source": "/SmartInspection-MoSJE-release.apk",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/download-apk",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.bin",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.android.package-archive"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"SmartInspection-MoSJE-release.apk\""
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

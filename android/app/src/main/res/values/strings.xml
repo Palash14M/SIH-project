@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Smart Inspection</string>
+    <string name="app_subtitle">MoSJE Project Monitoring &amp; Inspection Portal</string>
+
+    <!-- Nav Items -->
+    <string name="nav_home">Home</string>
+    <string name="nav_inspections">Inspections</string>
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_notifications">Alerts</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Actions -->
+    <string name="action_login">Login</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_request_otp">Send OTP</string>
+    <string name="action_verify_otp">Verify &amp; Continue</string>
+    <string name="action_capture">Capture Evidence</string>
+    <string name="action_submit">Submit Inspection</string>
+    <string name="action_save_offline">Save Offline</string>
+    <string name="action_escalate">Escalate (+₹400+GST)</string>
+    <string name="action_nudge">Nudge NGO</string>
+
+    <!-- Watermark text -->
+    <string name="watermark_slogan">for the people to the people</string>
+</resources>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- CameraX Preview View -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Top GPS Telemetry Lock Banner -->
+    <LinearLayout
+        android:id="@+id/layoutGpsBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="@dimen/spacing_md"
+        android:background="#99000000"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_sm">
+
+        <!-- Status Indicator Dot -->
+        <View
+            android:id="@+id/viewGpsDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@color/accent_success" />
+
+        <TextView
+            android:id="@+id/tvGpsStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:text="Acquiring GPS Telemetry..."
+            android:textColor="@color/surface"
+            android:textSize="@dimen/text_caption"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGpsAccuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="±-- m"
+            android:textColor="@color/surface"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <!-- Center Reticle / Rule of Thirds Grid -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null" />
+
+    <!-- Bottom Watermark Preview Overlay -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Bottom-Left Telemetry Coordinates -->
+        <TextView
+            android:id="@+id/tvPreviewTelemetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="110dp"
+            android:fontFamily="monospace"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:text="LAT: -- | LNG: --\nTIME: --"
+            android:textColor="#E0FFFFFF"
+            android:textSize="10sp" />
+
+        <!-- Bottom-Right MoSJE Emblem Watermark -->
+        <ImageView
+            android:id="@+id/ivPreviewWatermark"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="110dp"
+            android:alpha="0.45"
+            android:contentDescription="Official MoSJE Watermark Emblem"
+            android:src="@drawable/watermark_logo" />
+    </RelativeLayout>
+
+    <!-- Bottom Camera Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom"
+        android:background="#CC000000"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_lg">
+
+        <Button
+            android:id="@+id/btnCancelCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Cancel"
+            android:textColor="@color/surface"
+            android:textAllCaps="false" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Shutter Button (Capture ONLY via CameraX, Strictly NO gallery picker) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCapturePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/action_capture"
+            android:src="@android:drawable/ic_menu_camera"
+            app:backgroundTint="@color/primary"
+            app:tint="@color/surface"
+            app:fabCustomSize="64dp"
+            app:maxImageSize="32dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
+
+</FrameLayout>

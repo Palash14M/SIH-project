@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: smart-inspection-mosje
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: APP_ENV
+        value: production
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_FILE
+        value: storage/database.sqlite
+      - key: JWT_SECRET
+        generateValue: true

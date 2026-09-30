@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "pihu-saree"
+  },
+  "targets": {
+    "pihu-saree": {
+      "hosting": {
+        "project-mosje": [
+          "project-mosje"
+        ],
+        "pihu-saree": [
+          "pihu-saree"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_xl">
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:src="@drawable/watermark_logo"
+        android:contentDescription="MoSJE Emblem Logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MoSJE"
+        android:textColor="@color/primary_light"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:letterSpacing="0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="SMART INSPECTION"
+        android:textColor="@color/surface"
+        android:textSize="@dimen/text_display"
+        android:textStyle="bold"
+        android:letterSpacing="0.05" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:text="Real-Time Public Tender &amp; Infrastructure Monitoring"
+        android:textColor="@color/surface"
+        android:alpha="0.9"
+        android:textSize="@dimen/text_body"
+        android:gravity="center" />
+
+    <ProgressBar
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:indeterminateTint="@color/surface" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:text="Team CHAKRAVYUH • SIH 2026"
+        android:textColor="@color/primary_light"
+        android:textSize="@dimen/text_caption" />
+
+</LinearLayout>

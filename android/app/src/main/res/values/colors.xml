@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core Theme Palette (Follows Strict Controller Rules) -->
+    <color name="primary">#F76C45</color>              <!-- Chinese Orange -->
+    <color name="primary_dark">#D85530</color>
+    <color name="primary_light">#FFECE6</color>
+    <color name="accent">#F76C45</color>
+
+    <color name="text_primary">#110B0A</color>        <!-- Smoky Black -->
+    <color name="text_secondary">#5C5A59</color>
+    <color name="text_tertiary">#8C8987</color>
+
+    <color name="background">#F5F5F5</color>          <!-- Light Grey -->
+    <color name="surface">#FFFFFF</color>             <!-- White -->
+    <color name="divider">#E0E0E0</color>
+
+    <!-- Status Indicators -->
+    <color name="status_awarded">#0288D1</color>
+    <color name="status_in_progress">#F76C45</color>
+    <color name="status_delayed">#D32F2F</color>       <!-- Red -->
+    <color name="status_completed">#2E7D32</color>     <!-- Green -->
+    <color name="status_closed">#616161</color>
+    <color name="status_warning">#ED6C02</color>      <!-- Amber -->
+    <color name="status_danger">#D32F2F</color>
+
+    <!-- Semantic Accents -->
+    <color name="accent_success">#2E7D32</color>
+    <color name="accent_danger">#D32F2F</color>
+    <color name="accent_warning">#ED6C02</color>
+
+    <!-- Transparent / Overlay -->
+    <color name="scrim">#80000000</color>
+    <color name="watermark_white">#66FFFFFF</color>   <!-- ~40% opacity white -->
+</resources>

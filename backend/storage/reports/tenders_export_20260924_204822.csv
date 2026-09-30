@@ -1,0 +1,34 @@
+ID,"Tender Number",Title,Category,District,State,"Contractor Name","Sanctioned Amount (INR)","Actual Spent (INR)","Progress %","Spent %","Variance %",Status,"Variance Flag","Delay Flag","Scheduled End Date"
+33,TND-CSV-1790282902-783,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+32,TND-TEST-1790282901-859,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+31,TND-CSV-VAL-1790282883_187,"Model Solar Water Treatment Plant","Water supply/Sanitation",Nagpur,Maharashtra,"Jal Infrastructure Ltd",18000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+30,TND-2026-NAG-TEST-1790282883_187,"Construction of District Disability Rehabilitation Centre",Buildings,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,0,0,0,0,AWARDED,NO,NO,2026-12-31
+29,TND-CSV-VAL-1790282860_575,"Model Solar Water Treatment Plant","Water supply/Sanitation",Nagpur,Maharashtra,"Jal Infrastructure Ltd",18000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+28,TND-2026-NAG-TEST-1790282860_575,"Construction of District Disability Rehabilitation Centre",Buildings,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,0,0,0,0,AWARDED,NO,NO,2026-12-31
+27,TND-CSV-VAL-1790282832_688,"Model Solar Water Treatment Plant","Water supply/Sanitation",Nagpur,Maharashtra,"Jal Infrastructure Ltd",18000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+26,TND-2026-NAG-TEST-1790282832_688,"Construction of District Disability Rehabilitation Centre",Buildings,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,0,0,0,0,AWARDED,NO,NO,2026-12-31
+25,TND-CSV-VAL-1790282776_124,"Model Solar Water Treatment Plant","Water supply/Sanitation",Nagpur,Maharashtra,"Jal Infrastructure Ltd",18000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+24,TND-2026-NAG-TEST-1790282776_124,"Construction of District Disability Rehabilitation Centre",Buildings,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,0,0,0,0,AWARDED,NO,NO,2026-12-31
+23,TND-CSV-VAL-1790282526_227,"Model Solar Water Treatment Plant","Water supply/Sanitation",Nagpur,Maharashtra,"Jal Infrastructure Ltd",18000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+22,TND-2026-NAG-TEST-1790282526_227,"Construction of District Disability Rehabilitation Centre",Buildings,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,0,0,0,0,AWARDED,NO,NO,2026-12-31
+21,TND-CSV-1790281938-381,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+20,TND-TEST-1790281937-408,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+19,TND-CSV-1790281298-346,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+18,TND-TEST-1790281297-196,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+17,TND-CSV-1790280342-961,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+16,TND-TEST-1790280341-619,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+15,TND-CSV-1790280244-518,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+14,TND-TEST-1790280244-661,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+13,TND-CSV-1790280142-629,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+12,TND-TEST-1790280142-397,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+11,TND-TEST-1790280039,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+10,TND-CSV-01,"Nagpur Rural Water Pipeline Phase 1","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",15000000,0,0,0,0,AWARDED,NO,NO,2026-11-30
+9,TND-TEST-1790279846,"Automated Test Bridge Repair Project",Flyovers/Bridges,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",5000000,4500000,70,90,20,AWARDED,YES,NO,2026-12-31
+8,TND-2026-BL-08,"Dr. Ambedkar Hostel Expansion Wing",Buildings,Varanasi,"Uttar Pradesh","National Welfare Projects Corp",18000000,0,0,0,0,AWARDED,NO,NO,2027-05-31
+7,TND-2026-RD-07,"Shaheed Path Link Road Upgrade",Roads,Lucknow,"Uttar Pradesh","Ganga Construction Consortium",22000000,21800000,100,99.09,-0.91,COMPLETED,NO,NO,2026-06-30
+6,TND-2026-WF-06,"PM-DAKSH Divyang Skill Training Facility","Welfare schemes",Pune,Maharashtra,"National Welfare Projects Corp",12000000,0,0,0,0,AWARDED,NO,NO,2027-03-31
+5,TND-2026-WS-05,"Amravati Road Overhead Sump & Pipeline","Water supply/Sanitation",Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",28000000,2800000,10,10,0,AWARDED,NO,NO,2027-04-30
+4,TND-2026-BL-04,"MoSJE Composite Rehabilitation Centre",Buildings,Lucknow,"Uttar Pradesh","Ganga Construction Consortium",15000000,10500000,40,70,30,IN_PROGRESS,YES,NO,2026-10-31
+3,TND-2026-BR-03,"Varuna River Submersible Bridge",Flyovers/Bridges,Varanasi,"Uttar Pradesh","Ganga Construction Consortium",36000000,15840000,40,44,4,DELAYED,NO,YES,2026-08-31
+2,TND-2026-FL-02,"Shivaji Nagar Elevated Grade Separator",Flyovers/Bridges,Pune,Maharashtra,"Bharat Road Builders Pvt Ltd",82000000,201200000,60,245.37,185.37,IN_PROGRESS,YES,NO,2026-11-30
+1,TND-2026-RD-01,"Four-Laning of Hingna Arterial Corridor",Roads,Nagpur,Maharashtra,"Larsen & Infra Projects Ltd",45000000,117800000,70,261.78,191.78,IN_PROGRESS,YES,NO,2026-12-31
