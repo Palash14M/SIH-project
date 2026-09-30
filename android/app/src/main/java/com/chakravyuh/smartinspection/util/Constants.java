@@ -4,7 +4,7 @@ public final class Constants {
     private Constants() {}
 
     // Base URLs (Permanent Cloud 24/7 Endpoint)
-    public static final String DEFAULT_BASE_URL = "https://smart-inspection-mosje.onrender.com/api/";
+    public static final String DEFAULT_BASE_URL = "https://onrender.com/api/";
     public static final String LAN_BASE_URL = "http://172.20.187.147:8000/api/";
     public static final String EMULATOR_BASE_URL = "http://10.0.2.2:8000/api/";
 

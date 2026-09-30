@@ -8,11 +8,11 @@
     "version": "1.0.0-final",
     "status": "ALL GATES PASSED (100% Complete)",
     "live_urls": {
-      "interactive_app": "https://smart-inspection-mosje.onrender.com/preview",
+      "interactive_app": "https://onrender.com/preview",
       "firebase_portal": "https://pihu-saree.web.app/preview",
-      "claude_review_dossier": "https://smart-inspection-mosje.onrender.com/review",
-      "machine_spec": "https://smart-inspection-mosje.onrender.com/spec",
-      "health_check": "https://smart-inspection-mosje.onrender.com/api/health"
+      "claude_review_dossier": "https://onrender.com/review",
+      "machine_spec": "https://onrender.com/spec",
+      "health_check": "https://onrender.com/api/health"
     }
   },
   "executive_summary": "An enterprise-grade, offline-first mobile and cloud ecosystem for real-time tracking, geo-fenced inspection, algorithmic milestone weighting, budget dispute resolution, and citizen transparency across MoSJE infrastructure works.",

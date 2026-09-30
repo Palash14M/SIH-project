@@ -16,7 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Backend URL config (Permanent Cloud 24/7 Endpoint)
-        buildConfigField "String", "BASE_URL", "\"https://smart-inspection-mosje.onrender.com/api/\""
+        buildConfigField "String", "BASE_URL", "\"https://onrender.com/api/\""
     }
 
     signingConfigs {
