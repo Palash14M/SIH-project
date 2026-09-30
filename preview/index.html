@@ -2702,7 +2702,7 @@
                         </div>
                     </div>
                 `,
-                getPayload: () => ({ email: 'district.nagpur@mosje.gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123' })
+                getPayload: () => ({ email: 'district.nagpur@mosje.gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123', authenticator_code: document.getElementById('inpTotpCode')?.value || '123456' })
             },
             'STATE_OFFICER': {
                 name: 'K. S. Patil',
@@ -2733,7 +2733,7 @@
                         </div>
                     </div>
                 `,
-                getPayload: () => ({ email: 'state.maharashtra@mosje.gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123' })
+                getPayload: () => ({ email: 'state.maharashtra@mosje.gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123', authenticator_code: document.getElementById('inpTotpCode')?.value || '123456' })
             },
             'MOSJE_ADMIN': {
                 name: 'Central MoSJE Admin',
@@ -2764,7 +2764,7 @@
                         </div>
                     </div>
                 `,
-                getPayload: () => ({ email: document.getElementById('inpEmail')?.value || 'mosje.admin@gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123' })
+                getPayload: () => ({ email: document.getElementById('inpEmail')?.value || 'mosje.admin@gov.in', password: document.getElementById('inpPassword')?.value || 'Demo@123', authenticator_code: document.getElementById('inpTotpCode')?.value || '123456' })
             },
             'MASTER_ADMIN': {
                 name: 'Master Supreme Administrator',
@@ -2812,7 +2812,7 @@
                         </div>
                     </div>
                 `,
-                getPayload: () => ({ email: document.getElementById('inpEmail')?.value || 'demo.ngo@example.org', password: document.getElementById('inpPassword')?.value || 'Demo@123' })
+                getPayload: () => ({ email: document.getElementById('inpEmail')?.value || 'demo.ngo@example.org', password: document.getElementById('inpPassword')?.value || 'Demo@123', authenticator_code: document.getElementById('inpTotpCode')?.value || '123456' })
             },
             'CONTRACTOR': {
                 name: 'Larsen & Infra Partner',
@@ -3011,7 +3011,7 @@
         });
 
         function installOrDownloadApp() {
-            showToast("⬇ Initiating download of Project MoSJE Release APK (v1.1.0)...", "success");
+            showToast("⬇ Initiating download of Project MoSJE Release APK (v1.2.0)...", "success");
             const dlLink = document.createElement('a');
             dlLink.href = '/SmartInspection-MoSJE-release.apk';
             dlLink.download = 'SmartInspection-MoSJE-release.apk';

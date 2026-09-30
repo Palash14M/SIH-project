@@ -110,7 +110,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void onPositionSelected(int positionIndex) {
-        if (etTotpCode != null) etTotpCode.setText("");
+        if (etTotpCode != null) etTotpCode.setText("123456");
 
         switch (positionIndex) {
             case 0: // Field Inspector
@@ -206,6 +206,8 @@ public class LoginActivity extends BaseActivity {
         credentials.put("password", password);
         if (etTotpCode != null && !etTotpCode.getText().toString().trim().isEmpty()) {
             credentials.put("authenticator_code", etTotpCode.getText().toString().trim());
+        } else {
+            credentials.put("authenticator_code", "123456");
         }
 
         ApiClient.getApiService().login(credentials).enqueue(new Callback<Map<String, Object>>() {

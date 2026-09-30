@@ -67,9 +67,11 @@ public class PreferenceManager {
     }
 
     public String getServerUrl() {
+        int savedVersion = prefs.getInt("app_version_code", 0);
         String saved = prefs.getString("server_url", Constants.DEFAULT_BASE_URL);
-        if (saved == null || saved.trim().isEmpty() || saved.contains("trycloudflare.com") || saved.contains("retired-collectible") || saved.contains("helen-hindu") || saved.contains("writings-rhode") || saved.contains("buzz-hiv")) {
+        if (savedVersion < 3 || saved == null || saved.trim().isEmpty() || saved.contains("trycloudflare") || saved.contains("buzz-hiv") || saved.contains("retired-collectible") || saved.contains("helen-hindu") || saved.contains("writings-rhode")) {
             setServerUrl(Constants.DEFAULT_BASE_URL);
+            prefs.edit().putInt("app_version_code", 3).apply();
             return Constants.DEFAULT_BASE_URL;
         }
         return saved;
