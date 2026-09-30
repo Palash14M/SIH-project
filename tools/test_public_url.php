@@ -1,8 +1,8 @@
 <?php
 // Test public preview URL and complete action flow through it
 
-$publicUrl = 'https://buzz-hiv-initially-bucks.trycloudflare.com';
-echo "=== TESTING MOBILE-DIRECT CLOUDFLARE TUNNEL: $publicUrl ===\n\n";
+$publicUrl = 'https://onrender.com';
+echo "=== TESTING CLOUD HOST ENDPOINT: $publicUrl ===\n\n";
 
 function fetchPublic($path, $method = 'GET', $data = null, $token = null) {
     global $publicUrl;
