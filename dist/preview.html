@@ -1266,13 +1266,27 @@
                     </div>
                 </div>
 
-                <!-- Mobile Application Download / PWA Banner -->
-                <div style="background:linear-gradient(135deg, #2A2A33 0%, #1A1A22 100%); color:#fff; border-radius:12px; padding:12px 14px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
-                    <div style="font-size:12px; font-weight:700; margin-bottom:3px;">📲 Download Application to Mobile</div>
-                    <div style="font-size:10px; color:#BBB; margin-bottom:8px;">Install this app directly on your Android phone or iPhone home screen for fast field access.</div>
-                    <button onclick="installOrDownloadApp()" style="background:var(--primary); color:#fff; border:none; border-radius:6px; padding:8px 16px; font-size:11px; font-weight:700; cursor:pointer;">
-                        ⬇ Install / Download App
-                    </button>
+                <!-- Mobile Application Download Banner with Multi-CDN Mirrors -->
+                <div style="background:linear-gradient(135deg, #1E293B 0%, #0F172A 100%); color:#fff; border-radius:12px; padding:14px 14px; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,0.18); border:1px solid #334155;">
+                    <div style="font-size:13px; font-weight:800; margin-bottom:4px; display:flex; align-items:center; justify-content:center; gap:6px;">
+                        <span>📲 Download Android Application (APK)</span>
+                    </div>
+                    <div style="font-size:11px; color:#94A3B8; margin-bottom:12px;">Release v1.2.0 • 8.3 MB • Direct 1-Click Role Login pre-configured.</div>
+
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <a href="https://smart-inspection-mosje.onrender.com/download-apk" target="_blank" rel="noopener noreferrer" style="background:var(--primary); color:#fff; text-decoration:none; border-radius:8px; padding:10px 14px; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px; box-shadow:0 2px 8px rgba(247,108,69,0.3);">
+                            ⚡ Download Direct APK (Primary Cloud Server)
+                        </a>
+
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+                            <a href="https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk" target="_blank" rel="noopener noreferrer" style="background:#334155; color:#F1F5F9; text-decoration:none; border-radius:6px; padding:8px 8px; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:4px;">
+                                🌐 Mirror 2 (Google Firebase)
+                            </a>
+                            <a href="https://github.com/Palash14M/SIH-project/releases/download/v1.2.0/SmartInspection-MoSJE-release.apk" target="_blank" rel="noopener noreferrer" style="background:#334155; color:#F1F5F9; text-decoration:none; border-radius:6px; padding:8px 8px; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:4px;">
+                                📦 Mirror 3 (GitHub Releases)
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2973,21 +2987,15 @@
             deferredPrompt = e;
         });
 
-        function installOrDownloadApp() {
-            showToast("⬇ Initiating download of Project MoSJE Release APK (v1.2.0)...", "success");
-            const dlLink = document.createElement('a');
-            dlLink.href = 'https://github.com/Palash14M/SIH-project/releases/download/v1.2.0/SmartInspection-MoSJE-release.apk';
-            dlLink.download = 'SmartInspection-MoSJE-release.apk';
-            document.body.appendChild(dlLink);
-            dlLink.click();
-            document.body.removeChild(dlLink);
-            if (deferredPrompt) {
-                setTimeout(() => {
-                    try {
-                        deferredPrompt.prompt();
-                    } catch(e) {}
-                }, 1500);
+        function installOrDownloadApp(mirror = 'primary') {
+            let url = 'https://smart-inspection-mosje.onrender.com/download-apk';
+            if (mirror === 'firebase') {
+                url = 'https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk';
+            } else if (mirror === 'github') {
+                url = 'https://github.com/Palash14M/SIH-project/releases/download/v1.2.0/SmartInspection-MoSJE-release.apk';
             }
+            showToast("⬇ Downloading Project MoSJE Release APK (v1.2.0)...", "success");
+            window.location.assign(url);
         }
 
         // Register Service Worker

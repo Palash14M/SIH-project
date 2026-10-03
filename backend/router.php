@@ -249,7 +249,8 @@ Router::add('ANY', '/download-apk', function () {
     if ($apkPath) {
         serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
-    Response::notFound('APK file not found.');
+    header('Location: https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk', true, 302);
+    exit;
 });
 
 Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
@@ -257,7 +258,8 @@ Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
     if ($apkPath) {
         serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
-    Response::notFound('APK file not found.');
+    header('Location: https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk', true, 302);
+    exit;
 });
 
 Router::add('ANY', '/app-release.apk', function () {
@@ -265,7 +267,8 @@ Router::add('ANY', '/app-release.apk', function () {
     if ($apkPath) {
         serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
-    Response::notFound('APK file not found.');
+    header('Location: https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk', true, 302);
+    exit;
 });
 
 Router::add('ANY', '/preview/SmartInspection-MoSJE-release.apk', function () {
@@ -273,7 +276,8 @@ Router::add('ANY', '/preview/SmartInspection-MoSJE-release.apk', function () {
     if ($apkPath) {
         serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
-    Response::notFound('APK file not found.');
+    header('Location: https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk', true, 302);
+    exit;
 });
 
 Router::add('ANY', '/dist/SmartInspection-MoSJE-release.apk', function () {
@@ -281,7 +285,8 @@ Router::add('ANY', '/dist/SmartInspection-MoSJE-release.apk', function () {
     if ($apkPath) {
         serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
-    Response::notFound('APK file not found.');
+    header('Location: https://pihu-saree.web.app/SmartInspection-MoSJE-release.apk', true, 302);
+    exit;
 });
 
 Router::add('GET', '/preview', function () {
