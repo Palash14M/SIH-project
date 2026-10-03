@@ -4,11 +4,11 @@
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $rootDir = dirname(__DIR__);
 if (php_sapi_name() === 'cli-server') {
-    if ($uri !== '/' && $uri !== '' && is_file($rootDir . $uri)) {
-        return false;
-    }
-    if ($uri !== '/' && $uri !== '' && is_file(__DIR__ . $uri)) {
-        return false;
+    // Intercept APK downloads directly in router to ensure Range requests and headers
+    if (!str_ends_with($uri, '.apk') && $uri !== '/download-apk') {
+        if ($uri !== '/' && $uri !== '' && is_file($rootDir . $uri)) {
+            return false;
+        }
     }
 }
 
@@ -160,10 +160,12 @@ Router::add('GET', '/portal', function () {
 
 function getApkFilePath(): ?string {
     $candidates = [
+        dirname(__DIR__) . '/SmartInspection-MoSJE-release.apk',
         dirname(__DIR__) . '/backend/SmartInspection-MoSJE-release.apk',
-        dirname(__DIR__) . '/backend/app-release.apk',
-        dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin',
+        dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.apk',
         dirname(__DIR__) . '/preview/SmartInspection-MoSJE-release.apk',
+        dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin',
+        dirname(__DIR__) . '/backend/app-release.apk',
         dirname(__DIR__) . '/android/app/build/outputs/apk/release/app-release.apk',
     ];
     foreach ($candidates as $candidate) {
@@ -174,32 +176,86 @@ function getApkFilePath(): ?string {
     return null;
 }
 
-Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
-    $apkPath = getApkFilePath();
-    if ($apkPath) {
-        header('Content-Type: application/vnd.android.package-archive');
-        header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
-        header('Content-Length: ' . filesize($apkPath));
-        header('Cache-Control: no-cache, no-store, must-revalidate');
-        if ($_SERVER['REQUEST_METHOD'] !== 'HEAD') {
-            readfile($apkPath);
+function serveApkDownload(string $apkPath, string $filename = 'SmartInspection-MoSJE-release.apk'): void {
+    if (!file_exists($apkPath) || !is_readable($apkPath)) {
+        Response::notFound('APK file not found on server.');
+        return;
+    }
+
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
+
+    $fileSize = filesize($apkPath);
+    $mimeType = 'application/vnd.android.package-archive';
+
+    $range = $_SERVER['HTTP_RANGE'] ?? null;
+    $start = 0;
+    $end = $fileSize - 1;
+
+    if ($range && preg_match('/bytes=\h*(\d+)-(\d*)[\D.*]?/i', $range, $matches)) {
+        $start = (int)$matches[1];
+        if (!empty($matches[2])) {
+            $end = min((int)$matches[2], $fileSize - 1);
         }
+        $length = $end - $start + 1;
+        http_response_code(206);
+        header("Content-Range: bytes {$start}-{$end}/{$fileSize}");
+    } else {
+        http_response_code(200);
+        $length = $fileSize;
+    }
+
+    header("Content-Type: {$mimeType}");
+    header("Content-Disposition: attachment; filename=\"{$filename}\"");
+    header("Content-Length: {$length}");
+    header("Accept-Ranges: bytes");
+    header("Cache-Control: public, must-revalidate, max-age=3600");
+    header("Pragma: public");
+    header("Access-Control-Allow-Origin: *");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'HEAD') {
         exit;
     }
-    Response::notFound('APK file not found.');
-});
+
+    $fp = fopen($apkPath, 'rb');
+    if ($fp === false) {
+        exit;
+    }
+
+    if ($start > 0) {
+        fseek($fp, $start);
+    }
+
+    $bufferSize = 1024 * 64; // 64KB chunk streaming
+    $bytesRemaining = $length;
+    while (!feof($fp) && $bytesRemaining > 0 && !connection_aborted()) {
+        $readSize = min($bufferSize, $bytesRemaining);
+        $data = fread($fp, $readSize);
+        if ($data === false) {
+            break;
+        }
+        echo $data;
+        flush();
+        $bytesRemaining -= strlen($data);
+    }
+
+    fclose($fp);
+    exit;
+}
 
 Router::add('ANY', '/download-apk', function () {
     $apkPath = getApkFilePath();
     if ($apkPath) {
-        header('Content-Type: application/vnd.android.package-archive');
-        header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
-        header('Content-Length: ' . filesize($apkPath));
-        header('Cache-Control: no-cache, no-store, must-revalidate');
-        if ($_SERVER['REQUEST_METHOD'] !== 'HEAD') {
-            readfile($apkPath);
-        }
-        exit;
+        serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
+    }
+    Response::notFound('APK file not found.');
+});
+
+Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
+        serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
     Response::notFound('APK file not found.');
 });
@@ -207,14 +263,23 @@ Router::add('ANY', '/download-apk', function () {
 Router::add('ANY', '/app-release.apk', function () {
     $apkPath = getApkFilePath();
     if ($apkPath) {
-        header('Content-Type: application/vnd.android.package-archive');
-        header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
-        header('Content-Length: ' . filesize($apkPath));
-        header('Cache-Control: no-cache, no-store, must-revalidate');
-        if ($_SERVER['REQUEST_METHOD'] !== 'HEAD') {
-            readfile($apkPath);
-        }
-        exit;
+        serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
+    }
+    Response::notFound('APK file not found.');
+});
+
+Router::add('ANY', '/preview/SmartInspection-MoSJE-release.apk', function () {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
+        serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
+    }
+    Response::notFound('APK file not found.');
+});
+
+Router::add('ANY', '/dist/SmartInspection-MoSJE-release.apk', function () {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
+        serveApkDownload($apkPath, 'SmartInspection-MoSJE-release.apk');
     }
     Response::notFound('APK file not found.');
 });

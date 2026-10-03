@@ -9,7 +9,4 @@ android/app/build
 android/.gradle
 .gradle
 .git
-.firebase
-preview/*.apk
-dist/*.bin
-dist/*.apk
+.firebase/
