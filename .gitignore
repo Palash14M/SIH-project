@@ -18,5 +18,10 @@ android/app/build/
 android/local.properties
 .gradle/
 
+# Environment & Secrets
+.env
+backend/.env
+*.env
+
 # Firebase hosting cache
 .firebase/
