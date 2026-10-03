@@ -18,3 +18,5 @@ services:
         value: storage/database.sqlite
       - key: JWT_SECRET
         generateValue: true
+      - key: GEMINI_MODEL
+        value: gemini-flash-latest
