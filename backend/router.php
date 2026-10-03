@@ -158,12 +158,25 @@ Router::add('GET', '/portal', function () {
     Response::notFound('Portal page not found.');
 });
 
-Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
-    $apkPath = dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin';
-    if (!file_exists($apkPath)) {
-        $apkPath = dirname(__DIR__) . '/android/app/build/outputs/apk/release/app-release.apk';
+function getApkFilePath(): ?string {
+    $candidates = [
+        dirname(__DIR__) . '/backend/SmartInspection-MoSJE-release.apk',
+        dirname(__DIR__) . '/backend/app-release.apk',
+        dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin',
+        dirname(__DIR__) . '/preview/SmartInspection-MoSJE-release.apk',
+        dirname(__DIR__) . '/android/app/build/outputs/apk/release/app-release.apk',
+    ];
+    foreach ($candidates as $candidate) {
+        if (file_exists($candidate) && filesize($candidate) > 1000000) {
+            return $candidate;
+        }
     }
-    if (file_exists($apkPath)) {
+    return null;
+}
+
+Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
         header('Content-Type: application/vnd.android.package-archive');
         header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
         header('Content-Length: ' . filesize($apkPath));
@@ -177,11 +190,8 @@ Router::add('ANY', '/SmartInspection-MoSJE-release.apk', function () {
 });
 
 Router::add('ANY', '/download-apk', function () {
-    $apkPath = dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin';
-    if (!file_exists($apkPath)) {
-        $apkPath = dirname(__DIR__) . '/android/app/build/outputs/apk/release/app-release.apk';
-    }
-    if (file_exists($apkPath)) {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
         header('Content-Type: application/vnd.android.package-archive');
         header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
         header('Content-Length: ' . filesize($apkPath));
@@ -195,11 +205,8 @@ Router::add('ANY', '/download-apk', function () {
 });
 
 Router::add('ANY', '/app-release.apk', function () {
-    $apkPath = dirname(__DIR__) . '/dist/SmartInspection-MoSJE-release.bin';
-    if (!file_exists($apkPath)) {
-        $apkPath = dirname(__DIR__) . '/android/app/build/outputs/apk/release/app-release.apk';
-    }
-    if (file_exists($apkPath)) {
+    $apkPath = getApkFilePath();
+    if ($apkPath) {
         header('Content-Type: application/vnd.android.package-archive');
         header('Content-Disposition: attachment; filename="SmartInspection-MoSJE-release.apk"');
         header('Content-Length: ' . filesize($apkPath));

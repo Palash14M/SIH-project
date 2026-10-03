@@ -1,7 +1,7 @@
 <?php
 // Generates a high-resolution QR code image for scanning on mobile phones
 
-$targetUrl = 'https://onrender.com/preview';
+$targetUrl = 'https://smart-inspection-mosje.onrender.com/preview';
 $qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&margin=15&format=png&data=' . urlencode($targetUrl);
 
 $outDir = __DIR__ . '/../docs/screenshots';

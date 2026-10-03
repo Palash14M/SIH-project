@@ -1,7 +1,7 @@
 <?php
 // Test public preview URL and complete action flow through it
 
-$publicUrl = 'https://onrender.com';
+$publicUrl = 'https://smart-inspection-mosje.onrender.com';
 echo "=== TESTING CLOUD HOST ENDPOINT: $publicUrl ===\n\n";
 
 function fetchPublic($path, $method = 'GET', $data = null, $token = null) {

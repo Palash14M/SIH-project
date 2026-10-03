@@ -6,13 +6,13 @@
 
 ## 1. Live Mobile & Web Preview Links
 - **24/7 Cloud Mobile & Web Preview (Render.com + Firebase CDN):**  
-  👉 **[https://onrender.com/preview](https://onrender.com/preview)** *(or https://smart-inspection-mosje.onrender.com/preview)*  
+  👉 **[https://smart-inspection-mosje.onrender.com/preview](https://smart-inspection-mosje.onrender.com/preview)** *(or https://smart-inspection-mosje.onrender.com/preview)*  
   👉 **[https://pihu-saree.web.app/preview](https://pihu-saree.web.app/preview)**  
   *(Runs permanently 24/7 in the cloud even when your laptop is closed. Opens instantly on iOS Safari & Android Chrome).*
 - **Permanent REST API Endpoint (Render 24/7):**  
-  `https://onrender.com/api/` (Health check: `/api/health`)
+  `https://smart-inspection-mosje.onrender.com/api/` (Health check: `/api/health`)
 - **Direct APK Download Portal:**  
-  [https://onrender.com/download-apk](https://onrender.com/download-apk) or [https://pihu-saree.web.app/](https://pihu-saree.web.app/)
+  [https://smart-inspection-mosje.onrender.com/download-apk](https://smart-inspection-mosje.onrender.com/download-apk) or [https://pihu-saree.web.app/](https://pihu-saree.web.app/)
 - **Local Development Servers (Optional):**  
   - Mobile App Preview: `http://127.0.0.1:3000`  
   - REST API Backend: `http://127.0.0.1:8000`
