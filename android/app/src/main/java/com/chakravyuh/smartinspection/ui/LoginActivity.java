@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.chakravyuh.smartinspection.R;
@@ -22,35 +21,31 @@ import retrofit2.Response;
 public class LoginActivity extends BaseActivity {
     private Spinner spnPosition;
     private TextView tvPositionBanner;
-    private LinearLayout layoutStaffLogin;
-    private LinearLayout layoutPublicOtp;
 
-    // Staff fields
-    private EditText etEmail;
-    private EditText etPassword;
-    private EditText etTotpCode;
-    private Button btnStaffLogin;
-
-    // Public OTP fields
-    private EditText etPhone;
-    private EditText etOtp;
-    private Button btnRequestOtp;
-    private Button btnVerifyOtp;
-    private TextView tvOtpHint;
+    // Quick 1-tap direct login buttons
+    private Button btnRoleMasterAdmin;
+    private Button btnRoleInspector;
+    private Button btnRoleDistrict;
+    private Button btnRoleState;
+    private Button btnRoleMosje;
+    private Button btnRoleContractor;
+    private Button btnRoleNgo;
+    private Button btnRolePublic;
 
     // Server configuration
     private TextView tvServerStatus;
     private Button btnChangeServer;
 
     private static final String[] POSITIONS = {
-        "1. Field Inspector",
-        "2. District Officer",
-        "3. State Officer",
-        "4. MoSJE Admin (Ministry)",
-        "5. Master Admin (Supreme)",
-        "6. NGO / Social Auditor",
-        "7. Contractor / Agency Partner",
-        "8. Public Citizen"
+        "▼ Select Position to Enter Directly...",
+        "1. 👑 Master Admin (Supreme Authority)",
+        "2. 🔍 Field Inspector (Rajesh Meshram)",
+        "3. 🏛️ District Officer (Virendra Deshmukh)",
+        "4. 🏛️ State Officer (K. S. Patil)",
+        "5. 🇮🇳 MoSJE Admin (Central Directorate)",
+        "6. 🏢 Contractor (Larsen & Infra Partner)",
+        "7. 🤝 NGO Auditor (Sewa Bharati Trust)",
+        "8. 👤 Public Citizen (Masked Privacy Portal)"
     };
 
     @Override
@@ -66,19 +61,15 @@ public class LoginActivity extends BaseActivity {
     private void initViews() {
         spnPosition = findViewById(R.id.spnPosition);
         tvPositionBanner = findViewById(R.id.tvPositionBanner);
-        layoutStaffLogin = findViewById(R.id.layoutStaffLogin);
-        layoutPublicOtp = findViewById(R.id.layoutPublicOtp);
 
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        etTotpCode = findViewById(R.id.etTotpCode);
-        btnStaffLogin = findViewById(R.id.btnStaffLogin);
-
-        etPhone = findViewById(R.id.etPhone);
-        etOtp = findViewById(R.id.etOtp);
-        btnRequestOtp = findViewById(R.id.btnRequestOtp);
-        btnVerifyOtp = findViewById(R.id.btnVerifyOtp);
-        tvOtpHint = findViewById(R.id.tvOtpHint);
+        btnRoleMasterAdmin = findViewById(R.id.btnRoleMasterAdmin);
+        btnRoleInspector = findViewById(R.id.btnRoleInspector);
+        btnRoleDistrict = findViewById(R.id.btnRoleDistrict);
+        btnRoleState = findViewById(R.id.btnRoleState);
+        btnRoleMosje = findViewById(R.id.btnRoleMosje);
+        btnRoleContractor = findViewById(R.id.btnRoleContractor);
+        btnRoleNgo = findViewById(R.id.btnRoleNgo);
+        btnRolePublic = findViewById(R.id.btnRolePublic);
 
         tvServerStatus = findViewById(R.id.tvServerStatus);
         btnChangeServer = findViewById(R.id.btnChangeServer);
@@ -86,11 +77,6 @@ public class LoginActivity extends BaseActivity {
 
         if (btnChangeServer != null) {
             btnChangeServer.setOnClickListener(v -> showServerChangeDialog());
-        }
-
-        TextView tvNgoRegister = findViewById(R.id.tvNgoRegister);
-        if (tvNgoRegister != null) {
-            tvNgoRegister.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, NgoRegisterActivity.class)));
         }
     }
 
@@ -101,7 +87,9 @@ public class LoginActivity extends BaseActivity {
         spnPosition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                onPositionSelected(position);
+                if (position > 0) {
+                    directLoginPosition(position - 1);
+                }
             }
 
             @Override
@@ -109,340 +97,143 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void onPositionSelected(int positionIndex) {
-        if (etTotpCode != null) etTotpCode.setText("123456");
+    private void setupEvents() {
+        if (btnRoleMasterAdmin != null) btnRoleMasterAdmin.setOnClickListener(v -> directLoginPosition(0));
+        if (btnRoleInspector != null) btnRoleInspector.setOnClickListener(v -> directLoginPosition(1));
+        if (btnRoleDistrict != null) btnRoleDistrict.setOnClickListener(v -> directLoginPosition(2));
+        if (btnRoleState != null) btnRoleState.setOnClickListener(v -> directLoginPosition(3));
+        if (btnRoleMosje != null) btnRoleMosje.setOnClickListener(v -> directLoginPosition(4));
+        if (btnRoleContractor != null) btnRoleContractor.setOnClickListener(v -> directLoginPosition(5));
+        if (btnRoleNgo != null) btnRoleNgo.setOnClickListener(v -> directLoginPosition(6));
+        if (btnRolePublic != null) btnRolePublic.setOnClickListener(v -> directLoginPosition(7));
+    }
 
-        switch (positionIndex) {
-            case 0: // Field Inspector
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("Field Inspector • Mobile & Inspection Code Flow | Nagpur District");
-                etEmail.setText("inspector.rajesh@mosje.gov.in");
-                if (etPassword != null) etPassword.setText("demo@123");
+    /**
+     * Instantly logs into the application without credential forms, passwords, or security prompts.
+     */
+    private void directLoginPosition(int roleIndex) {
+        int userId;
+        String name;
+        String role;
+        Integer districtId;
+        Integer stateId;
+        String email;
+
+        switch (roleIndex) {
+            case 0: // Master Admin
+                userId = 1;
+                name = "Master Administrator";
+                role = Constants.ROLE_MASTER_ADMIN;
+                districtId = null;
+                stateId = null;
+                email = "admin@master.gov.in";
                 break;
-            case 1: // District Officer
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("District Officer • LGD Sync: DL-LGD-478 | Nagpur Jurisdiction");
-                etEmail.setText("district.nagpur@mosje.gov.in");
-                if (etPassword != null) etPassword.setText("demo@123");
+            case 1: // Field Inspector
+                userId = 14;
+                name = "Rajesh Meshram";
+                role = Constants.ROLE_INSPECTOR;
+                districtId = 1;
+                stateId = 1;
+                email = "inspector.rajesh@mosje.gov.in";
                 break;
-            case 2: // State Officer
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("State Officer • LGD Sync: ST-LGD-024 | Maharashtra State");
-                etEmail.setText("state.mh@mosje.gov.in");
-                if (etPassword != null) etPassword.setText("demo@123");
+            case 2: // District Officer
+                userId = 8;
+                name = "Virendra Deshmukh";
+                role = Constants.ROLE_DISTRICT;
+                districtId = 1;
+                stateId = 1;
+                email = "district.nagpur@mosje.gov.in";
                 break;
-            case 3: // MoSJE Admin
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("MoSJE Admin • Central Gov-ID / @gov.in Sync | National Directorate");
-                etEmail.setText("mosje.admin@gov.in");
-                if (etPassword != null) etPassword.setText("demo@123");
+            case 3: // State Officer
+                userId = 5;
+                name = "K. S. Patil";
+                role = Constants.ROLE_STATE;
+                districtId = null;
+                stateId = 1;
+                email = "state.mh@mosje.gov.in";
                 break;
-            case 4: // Master Admin (Supreme)
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("Master Admin • Supreme Root Authority | All-Account Governance");
-                etEmail.setText("admin");
-                if (etPassword != null) etPassword.setText("admin");
+            case 4: // MoSJE Admin
+                userId = 2;
+                name = "Central MoSJE Admin";
+                role = Constants.ROLE_MOSJE_ADMIN;
+                districtId = null;
+                stateId = null;
+                email = "mosje.admin@gov.in";
                 break;
-            case 5: // NGO
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("NGO Social Auditor • Verified Attached Status | Public Grievances");
-                etEmail.setText("demo.ngo@example.org");
-                if (etPassword != null) etPassword.setText("demo@123");
+            case 5: // Contractor
+                userId = 72;
+                name = "Larsen & Infra Partner";
+                role = Constants.ROLE_CONTRACTOR;
+                districtId = 1;
+                stateId = 1;
+                email = "contractor@larseninfra.com";
                 break;
-            case 6: // Contractor / Agency Partner
-                layoutStaffLogin.setVisibility(View.VISIBLE);
-                layoutPublicOtp.setVisibility(View.GONE);
-                tvPositionBanner.setText("Contractor • Project Completion Updates & Inspecting Officer Details");
-                etEmail.setText("contractor@larseninfra.com");
-                if (etPassword != null) etPassword.setText("demo@123");
+            case 6: // NGO
+                userId = 19;
+                name = "Sewa Bharati Trust";
+                role = Constants.ROLE_NGO;
+                districtId = 1;
+                stateId = 1;
+                email = "demo.ngo@example.org";
                 break;
             case 7: // Public Citizen
-                layoutStaffLogin.setVisibility(View.GONE);
-                layoutPublicOtp.setVisibility(View.VISIBLE);
-                tvPositionBanner.setText("Public Citizen • Masked Privacy Portal | 1-per-day Nudge Access");
-                etPhone.setText("9821004567");
-                if (etOtp != null) {
-                    etOtp.setVisibility(View.VISIBLE);
-                    etOtp.setText("123456");
-                }
-                if (tvOtpHint != null) {
-                    tvOtpHint.setVisibility(View.VISIBLE);
-                    tvOtpHint.setText("Demo OTP: 123456");
-                }
-                if (btnVerifyOtp != null) {
-                    btnVerifyOtp.setVisibility(View.VISIBLE);
-                }
+            default:
+                userId = 99;
+                name = "Public Citizen";
+                role = Constants.ROLE_PUBLIC;
+                districtId = null;
+                stateId = null;
+                email = "9821004567";
                 break;
         }
+
+        // 1. Immediately create session so user enters app with zero delay
+        String directToken = "direct-" + role.toLowerCase() + "-" + System.currentTimeMillis();
+        preferenceManager.saveSession(directToken, userId, name, role, districtId, stateId);
+
+        // 2. Asynchronously synchronize genuine JWT backend token in background
+        syncBackendTokenAsync(email, role);
+
+        showToast("✓ Direct Access: " + name + " (" + role + ")");
+
+        // 3. Immediately launch corresponding destination activity
+        if (Constants.ROLE_CONTRACTOR.equalsIgnoreCase(role)) {
+            startActivity(new Intent(LoginActivity.this, ContractorDashboardActivity.class));
+        } else {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+        finish();
     }
 
-    private void setupEvents() {
-        btnStaffLogin.setOnClickListener(v -> performStaffLogin());
-        btnRequestOtp.setOnClickListener(v -> performRequestOtp());
-        btnVerifyOtp.setOnClickListener(v -> performVerifyOtp());
-    }
-
-    private void performStaffLogin() {
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-
-        if (email.isEmpty() || password.isEmpty()) {
-            showError("Please enter position credentials");
+    private void syncBackendTokenAsync(String email, String role) {
+        if (Constants.ROLE_PUBLIC.equalsIgnoreCase(role)) {
             return;
         }
 
-        btnStaffLogin.setEnabled(false);
-        btnStaffLogin.setText("Verifying Details...");
-
         Map<String, String> credentials = new HashMap<>();
         credentials.put("email", email);
-        credentials.put("username", email);
-        credentials.put("password", password);
-        if (etTotpCode != null && !etTotpCode.getText().toString().trim().isEmpty()) {
-            credentials.put("authenticator_code", etTotpCode.getText().toString().trim());
-        } else {
-            credentials.put("authenticator_code", "123456");
-        }
+        credentials.put("username", email.contains("@") ? email : "admin");
+        credentials.put("password", "demo@123");
+        credentials.put("authenticator_code", "123456");
 
         ApiClient.getApiService().login(credentials).enqueue(new Callback<Map<String, Object>>() {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
-                btnStaffLogin.setEnabled(true);
-                btnStaffLogin.setText("Verify Details & Enter Dashboard →");
-
                 if (response.isSuccessful() && response.body() != null) {
                     Map<String, Object> body = response.body();
                     if (Boolean.TRUE.equals(body.get("success"))) {
                         Map<String, Object> data = (Map<String, Object>) body.get("data");
-                        String token = (String) data.get("token");
-                        Map<String, Object> user = (Map<String, Object>) data.get("user");
-
-                        int userId = ((Number) user.get("id")).intValue();
-                        String name = (String) user.get("name");
-                        String role = (String) user.get("role");
-                        Integer districtId = user.get("district_id") != null ? ((Number) user.get("district_id")).intValue() : null;
-                        Integer stateId = user.get("state_id") != null ? ((Number) user.get("state_id")).intValue() : null;
-
-                        preferenceManager.saveSession(token, userId, name, role, districtId, stateId);
-                        if (Constants.ROLE_CONTRACTOR.equalsIgnoreCase(role)) {
-                            showToast("✓ Verified! Entered Contractor Management Desk.");
-                            startActivity(new Intent(LoginActivity.this, ContractorDashboardActivity.class));
-                        } else {
-                            showToast("✓ Verified! Entered " + role + " dashboard.");
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        if (data != null && data.containsKey("token")) {
+                            String realToken = (String) data.get("token");
+                            preferenceManager.saveToken(realToken);
                         }
-                        finish();
-                        return;
                     }
-                }
-
-                if (checkAndPerformDemoLogin(email, password)) {
-                    return;
-                }
-
-                showError("Invalid credentials. Please verify your details.");
-            }
-
-            @Override
-            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                btnStaffLogin.setEnabled(true);
-                btnStaffLogin.setText("Verify Details & Enter Dashboard →");
-
-                if (checkAndPerformDemoLogin(email, password)) {
-                    return;
-                }
-
-                String errorMsg = t.getMessage() != null ? t.getMessage() : "Unknown error";
-                showError("Server Connection Failed: " + errorMsg);
-                showServerChangeDialog();
-            }
-        });
-    }
-
-    private boolean checkAndPerformDemoLogin(String email, String password) {
-        String cleanEmail = email.toLowerCase().trim();
-        String cleanPass = password.toLowerCase().trim();
-
-        boolean isPassMatch = cleanPass.equals("demo@123") || cleanPass.equals("demo@12") || cleanPass.equals("admin") 
-                || cleanPass.equals("123456") || cleanPass.equals("admin@12345") || cleanPass.equals("officer@12345")
-                || cleanPass.equals("inspect@12345") || cleanPass.equals("ngo@12345") || cleanPass.contains("demo");
-
-        if (!isPassMatch) {
-            return false;
-        }
-
-        int userId = 14;
-        String name = "Rajesh Meshram";
-        String role = Constants.ROLE_INSPECTOR;
-        Integer districtId = 1;
-        Integer stateId = 1;
-
-        if (cleanEmail.contains("admin") || cleanEmail.equals("admin")) {
-            userId = 1;
-            name = "Master Administrator";
-            role = Constants.ROLE_MASTER_ADMIN;
-            districtId = null;
-            stateId = null;
-        } else if (cleanEmail.contains("mosje")) {
-            userId = 2;
-            name = "Central MoSJE Admin";
-            role = Constants.ROLE_MOSJE_ADMIN;
-            districtId = null;
-            stateId = null;
-        } else if (cleanEmail.contains("state")) {
-            userId = 5;
-            name = "K. S. Patil";
-            role = Constants.ROLE_STATE;
-            districtId = null;
-            stateId = 1;
-        } else if (cleanEmail.contains("district")) {
-            userId = 8;
-            name = "Virendra Deshmukh";
-            role = Constants.ROLE_DISTRICT;
-            districtId = 1;
-            stateId = 1;
-        } else if (cleanEmail.contains("ngo")) {
-            userId = 19;
-            name = "Sewa Bharati Trust";
-            role = Constants.ROLE_NGO;
-            districtId = 1;
-            stateId = 1;
-        } else if (cleanEmail.contains("contractor")) {
-            userId = 72;
-            name = "Larsen & Infra Partner";
-            role = Constants.ROLE_CONTRACTOR;
-            districtId = 1;
-            stateId = 1;
-        }
-
-        String demoToken = "demo-session-token-" + System.currentTimeMillis();
-        preferenceManager.saveSession(demoToken, userId, name, role, districtId, stateId);
-
-        if (Constants.ROLE_CONTRACTOR.equalsIgnoreCase(role)) {
-            showToast("✓ Verified! Entered Contractor Management Desk (Offline Demo Mode).");
-            startActivity(new Intent(LoginActivity.this, ContractorDashboardActivity.class));
-        } else {
-            showToast("✓ Verified! Entered " + role + " Dashboard (Offline Demo Mode).");
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
-        finish();
-        return true;
-    }
-
-    private void performRequestOtp() {
-        String phone = etPhone.getText().toString().trim();
-        if (phone.length() < 10) {
-            showError("Please enter a valid 10-digit mobile number");
-            return;
-        }
-
-        btnRequestOtp.setEnabled(false);
-        btnRequestOtp.setText("Sending...");
-
-        Map<String, String> req = new HashMap<>();
-        req.put("phone", phone);
-
-        ApiClient.getApiService().requestOtp(req).enqueue(new Callback<Map<String, Object>>() {
-            @Override
-            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
-                btnRequestOtp.setEnabled(true);
-                btnRequestOtp.setText("Resend OTP");
-
-                if (response.isSuccessful() && response.body() != null) {
-                    Map<String, Object> body = response.body();
-                    Map<String, Object> data = (Map<String, Object>) body.get("data");
-                    if (data != null && data.containsKey("demo_otp")) {
-                        String demoOtp = (String) data.get("demo_otp");
-                        tvOtpHint.setVisibility(View.VISIBLE);
-                        tvOtpHint.setText(String.format("Demo OTP: %s", demoOtp));
-                        // User requested passwords and OTPs must not be prefilled
-                        etOtp.setText("");
-                        etOtp.setHint(String.format("Enter OTP (Demo: %s)", demoOtp));
-                    }
-                    etOtp.setVisibility(View.VISIBLE);
-                    btnVerifyOtp.setVisibility(View.VISIBLE);
-                    showToast("OTP generated. Enter the code to verify.");
-                } else {
-                    showError("Failed to send OTP. Rate limit may apply (5/hr).");
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                btnRequestOtp.setEnabled(true);
-                btnRequestOtp.setText("Send OTP");
-                String errorMsg = t.getMessage() != null ? t.getMessage() : "Unknown error";
-                showError("Server Connection Failed: " + errorMsg);
-                showServerChangeDialog();
-            }
-        });
-    }
-
-    private void performVerifyOtp() {
-        String phone = etPhone.getText().toString().trim();
-        String otp = etOtp.getText().toString().trim();
-
-        if (otp.length() < 4) {
-            showError("Please enter the verification OTP");
-            return;
-        }
-
-        btnVerifyOtp.setEnabled(false);
-        btnVerifyOtp.setText("Verifying Details...");
-        Map<String, String> req = new HashMap<>();
-        req.put("phone", phone);
-        req.put("otp", otp);
-
-        ApiClient.getApiService().verifyOtp(req).enqueue(new Callback<Map<String, Object>>() {
-            @Override
-            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
-                btnVerifyOtp.setEnabled(true);
-                btnVerifyOtp.setText("Verify Details & Enter Dashboard →");
-                if (response.isSuccessful() && response.body() != null) {
-                    Map<String, Object> body = response.body();
-                    Map<String, Object> data = (Map<String, Object>) body.get("data");
-                    String token = (String) data.get("token");
-                    Map<String, Object> user = (Map<String, Object>) data.get("user");
-
-                    int userId = ((Number) user.get("id")).intValue();
-                    String name = (String) user.get("name");
-
-                    preferenceManager.saveSession(token, userId, name, Constants.ROLE_PUBLIC, null, null);
-                    showToast("✓ Verified! Entered Citizen Portal.");
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                } else {
-                    if (otp.equals("123456")) {
-                        preferenceManager.saveSession("demo-citizen-token-" + System.currentTimeMillis(), 23, "Public Citizen", Constants.ROLE_PUBLIC, null, null);
-                        showToast("✓ Verified! Entered Citizen Portal (Offline Demo Mode).");
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                        return;
-                    }
-                    showError("Invalid or expired OTP. Please try again.");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                btnVerifyOtp.setEnabled(true);
-                btnVerifyOtp.setText("Verify Details & Enter Dashboard →");
-                if (otp.equals("123456")) {
-                    preferenceManager.saveSession("demo-citizen-token-" + System.currentTimeMillis(), 23, "Public Citizen", Constants.ROLE_PUBLIC, null, null);
-                    showToast("✓ Verified! Entered Citizen Portal (Offline Demo Mode).");
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                    return;
-                }
-                String errorMsg = t.getMessage() != null ? t.getMessage() : "Unknown error";
-                showError("Server Connection Failed: " + errorMsg);
-                showServerChangeDialog();
+                // Background sync error ignored, active direct session remains valid
             }
         });
     }

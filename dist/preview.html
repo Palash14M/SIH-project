@@ -1211,8 +1211,8 @@
 
                 <!-- Main Login Card -->
                 <div style="background:#fff; border-radius:14px; padding:16px 14px; box-shadow:0 4px 16px rgba(0,0,0,0.06); border:1px solid #EAE6E5; margin-bottom:12px;">
-                    <div style="font-size:13px; font-weight:800; color:#110B0A; margin-bottom:3px;">Official Position Login</div>
-                    <div style="font-size:11px; color:#666; margin-bottom:8px;">Select your official post from the dropdown below. Respective details will be loaded for authentication.</div>
+                    <div style="font-size:14px; font-weight:800; color:#110B0A; margin-bottom:3px;">⚡ Direct 1-Click Role Login</div>
+                    <div style="font-size:11px; color:#666; margin-bottom:8px;">Select any position from the dropdown menu to enter the application immediately without entering credentials.</div>
 
                     <!-- Server Connection Bar -->
                     <div style="display:flex; justify-content:space-between; align-items:center; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:6px 10px; margin-bottom:8px; font-size:11px;">
@@ -1226,46 +1226,43 @@
                         <button onclick="openAiCopilotModal()" style="background:#FFF; border:1px solid #C4B5FD; color:#6D28D9; font-size:10px; font-weight:700; padding:2px 7px; border-radius:6px; cursor:pointer;">Ask AI</button>
                     </div>
 
-
-                    <!-- Position Dropdown -->
+                    <!-- Position Dropdown (Selection enters the app immediately) -->
                     <div class="modal-form-group" style="margin-bottom:12px;">
-                        <label class="modal-form-label" style="color:#110B0A; font-weight:700; font-size:11px;">Select Official Position / Post:</label>
-                        <select id="loginPositionSelect" class="position-select-field" onchange="onLoginPositionChange()">
-                            <option value="">-- Choose Position / Post --</option>
-                            <option value="INSPECTOR">1. Field Inspector</option>
-                            <option value="DISTRICT_OFFICER">2. District Officer</option>
-                            <option value="STATE_OFFICER">3. State Officer</option>
-                            <option value="MOSJE_ADMIN">4. MoSJE Admin (Ministry)</option>
-                            <option value="MASTER_ADMIN">5. Master Admin (Supreme)</option>
-                            <option value="NGO">6. NGO / Social Auditor</option>
-                            <option value="CONTRACTOR">7. Contractor / Agency Partner</option>
-                            <option value="PUBLIC">8. Public Citizen</option>
+                        <label class="modal-form-label" style="color:#110B0A; font-weight:700; font-size:11px;">Select Position to Enter Directly:</label>
+                        <select id="loginPositionSelect" class="position-select-field" onchange="directEnterPosition(this.value)">
+                            <option value="">▼ Select Position to Enter Directly...</option>
+                            <option value="MASTER_ADMIN">👑 1. Master Admin (Supreme Authority)</option>
+                            <option value="INSPECTOR">🔍 2. Field Inspector (Rajesh Meshram)</option>
+                            <option value="DISTRICT_OFFICER">🏛️ 3. District Officer (Virendra Deshmukh)</option>
+                            <option value="STATE_OFFICER">🏛️ 4. State Officer (K. S. Patil)</option>
+                            <option value="MOSJE_ADMIN">🇮🇳 5. MoSJE Admin (Central Directorate)</option>
+                            <option value="CONTRACTOR">🏢 6. Contractor (Larsen &amp; Infra Partner)</option>
+                            <option value="NGO">🤝 7. NGO Auditor (Sewa Bharati Trust)</option>
+                            <option value="PUBLIC">👤 8. Public Citizen (Masked Privacy Portal)</option>
                         </select>
                     </div>
 
-                    <!-- Dynamic Credential Fields Container -->
-                    <div id="dynamicCredContainer" style="display:none;">
-                        <!-- Role Info Banner -->
-                        <div id="loginRoleInfoBanner" style="background:#F0F4F8; border-left:4px solid var(--primary); padding:8px 10px; border-radius:6px; font-size:11px; color:#333; margin-bottom:10px;">
-                            <!-- Populated dynamically -->
-                        </div>
-
-                        <!-- Form Inputs -->
-                        <div id="loginFormInputs">
-                            <!-- Populated dynamically -->
-                        </div>
-
-                        <div style="background:#FFF9C4; border:1px solid #FFE082; padding:7px 9px; border-radius:6px; font-size:10px; color:#F57F17; margin:10px 0;">
-                            ✓ <strong>Task 12 Demo Account:</strong> Sync checks and credentials pre-loaded. You can verify or edit details above.
-                        </div>
-
-                        <button id="btnLoginSubmit" class="btn-position-login" onclick="submitPositionLogin()">
-                            Verify Details &amp; Enter Dashboard →
-                        </button>
+                    <div style="font-size:11px; color:#666; margin:8px 0 10px; text-align:center;">
+                        👆 <strong>Tap the dropdown above or any quick role button below to enter directly.</strong>
                     </div>
 
-                    <div id="loginPromptPlaceholder" style="text-align:center; padding:18px 10px; color:#888; font-size:11px; border:1px dashed #DDD; border-radius:8px;">
-                        👆 Please select a position from the dropdown menu to enter details.
+                    <!-- OR Divider -->
+                    <div style="display:flex; align-items:center; margin:10px 0;">
+                        <div style="flex:1; height:1px; background:#E2E8F0;"></div>
+                        <span style="font-size:10px; font-weight:700; color:#94A3B8; padding:0 8px;">OR TAP DIRECTLY BELOW</span>
+                        <div style="flex:1; height:1px; background:#E2E8F0;"></div>
+                    </div>
+
+                    <!-- Quick 1-Tap Role Buttons Grid -->
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+                        <button onclick="directEnterPosition('MASTER_ADMIN')" style="background:#991B1B; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">👑 Master Admin</button>
+                        <button onclick="directEnterPosition('INSPECTOR')" style="background:#EA580C; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🔍 Field Inspector</button>
+                        <button onclick="directEnterPosition('DISTRICT_OFFICER')" style="background:#2563EB; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🏛️ District Officer</button>
+                        <button onclick="directEnterPosition('STATE_OFFICER')" style="background:#7C3AED; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🏛️ State Officer</button>
+                        <button onclick="directEnterPosition('MOSJE_ADMIN')" style="background:#0284C7; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🇮🇳 MoSJE Admin</button>
+                        <button onclick="directEnterPosition('CONTRACTOR')" style="background:#D97706; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🏢 Contractor</button>
+                        <button onclick="directEnterPosition('NGO')" style="background:#059669; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">🤝 NGO Auditor</button>
+                        <button onclick="directEnterPosition('PUBLIC')" style="background:#4B5563; color:#fff; border:none; padding:10px 6px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">👤 Public Citizen</button>
                     </div>
                 </div>
 
@@ -1287,8 +1284,7 @@
                     <div style="display:flex; gap:4px; align-items:center;">
                         <button onclick="openAiCopilotModal()" style="background:linear-gradient(135deg, #7C3AED, #4F46E5); border:1px solid rgba(255,255,255,0.6); color:#fff; border-radius:6px; padding:3px 7px; font-size:10px; font-weight:700; cursor:pointer;" title="Google AI Studio Copilot">✨ Gemini</button>
                         <button onclick="openDatabaseExplorer()" style="background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.45); color:#fff; border-radius:6px; padding:3px 7px; font-size:10px; font-weight:700; cursor:pointer;" title="Inspect SQLite Database">🗄️ DB</button>
-                        <button onclick="openAuthenticatorModal()" style="background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.45); color:#fff; border-radius:6px; padding:3px 7px; font-size:10px; font-weight:700; cursor:pointer;" title="Google / Gov Authenticator 2FA">🔑 2FA</button>
-                        <button onclick="handleAppLogout()" style="background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.45); color:#fff; border-radius:6px; padding:3px 7px; font-size:10px; font-weight:700; cursor:pointer;">🚪 Sign Out</button>
+                        <button onclick="handleAppLogout()" style="background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.45); color:#fff; border-radius:6px; padding:3px 7px; font-size:10px; font-weight:700; cursor:pointer;" title="Switch Role or Exit Session">🚪 Switch Role</button>
                     </div>
                 </div>
                 <div class="user-greeting" id="userGreeting">Namaste, Official</div>
@@ -2858,147 +2854,95 @@
             }
         };
 
-        // POSITION DROPDOWN EVENT HANDLER
-        function onLoginPositionChange() {
-            const pos = document.getElementById('loginPositionSelect').value;
-            const container = document.getElementById('dynamicCredContainer');
-            const placeholder = document.getElementById('loginPromptPlaceholder');
-            const banner = document.getElementById('loginRoleInfoBanner');
-            const inputs = document.getElementById('loginFormInputs');
+        // DIRECT POSITION LOGIN - ENTERS APP IMMEDIATELY ON DROPDOWN OR QUICK BUTTON CLICK
+        async function directEnterPosition(pos) {
+            if (!pos) return;
+            const meta = ROLES_META[pos];
+            if (!meta) return;
 
-            if (!pos || !POSITIONS_CONFIG[pos]) {
-                container.style.display = 'none';
-                placeholder.style.display = 'block';
-                return;
+            currentRole = pos;
+            currentToken = "direct-token-" + pos.toLowerCase() + "-" + Date.now();
+            currentUser = {
+                id: pos === 'MASTER_ADMIN' ? 1 :
+                    pos === 'MOSJE_ADMIN' ? 2 :
+                    pos === 'STATE_OFFICER' ? 5 :
+                    pos === 'DISTRICT_OFFICER' ? 8 :
+                    pos === 'INSPECTOR' ? 14 :
+                    pos === 'NGO' ? 19 :
+                    pos === 'CONTRACTOR' ? 72 : 99,
+                name: meta.name,
+                role: pos,
+                email: meta.email || (pos.toLowerCase() + '@mosje.gov.in'),
+                district_id: (pos === 'INSPECTOR' || pos === 'DISTRICT_OFFICER' || pos === 'NGO' || pos === 'CONTRACTOR') ? 1 : null,
+                state_id: (pos === 'STATE_OFFICER' || pos === 'INSPECTOR' || pos === 'DISTRICT_OFFICER' || pos === 'NGO' || pos === 'CONTRACTOR') ? 1 : null
+            };
+
+            // Hide Login Screen, Show App Shell
+            document.getElementById('screenLogin').style.display = 'none';
+            document.getElementById('appHeader').style.display = 'block';
+            document.getElementById('bottomNav').style.display = 'flex';
+
+            document.getElementById('userGreeting').innerText = `Namaste, ${meta.name}`;
+            document.getElementById('roleBadge').innerText = meta.title;
+            document.getElementById('fabCamera').style.display = meta.hasFab ? 'flex' : 'none';
+
+            // Master Nav icon only for Master Admin
+            const navMaster = document.getElementById('navMaster');
+            if (navMaster) {
+                navMaster.style.display = (pos === 'MASTER_ADMIN') ? 'flex' : 'none';
             }
 
-            const cfg = POSITIONS_CONFIG[pos];
-            banner.innerHTML = cfg.infoBanner;
-            banner.style.borderLeftColor = cfg.badgeColor;
-            inputs.innerHTML = cfg.fieldsHtml;
+            // Contractor Nav icon for Contractor
+            const navContractor = document.getElementById('navContractor');
+            if (navContractor) {
+                navContractor.style.display = (pos === 'CONTRACTOR') ? 'flex' : 'none';
+            }
 
-            placeholder.style.display = 'none';
-            container.style.display = 'block';
+            // Add Tender button only for Admins
+            const btnAdd = document.getElementById('btnAdminAddTender');
+            if (btnAdd) {
+                btnAdd.style.display = (pos === 'MOSJE_ADMIN' || pos === 'MASTER_ADMIN') ? 'inline-flex' : 'none';
+            }
+
+            // Inspector Code box only for Inspector
+            const codeBox = document.getElementById('inspectorCodeBox');
+            if (codeBox) {
+                codeBox.style.display = (pos === 'INSPECTOR') ? 'block' : 'none';
+            }
+
+            renderShortcuts(pos);
+            renderRoleHome(pos);
+            renderProfile(pos);
+
+            if (pos === 'MASTER_ADMIN') {
+                switchTab('master');
+            } else if (pos === 'CONTRACTOR') {
+                switchTab('contractor');
+            } else {
+                switchTab('home');
+            }
+
+            showToast(`✓ Direct Access: Logged in as ${meta.name} (${meta.title})`, 'success');
+
+            // Asynchronously sync real backend JWT token in background without blocking UI
+            authenticateRole(pos).then(() => {
+                loadHierarchyData();
+                loadTenders();
+                loadStats();
+            }).catch(e => {
+                console.warn("Background auth sync notice:", e);
+            });
         }
 
-        // SUBMIT POSITION LOGIN (VERIFY DETAILS & ENTER DASHBOARD)
-        async function submitPositionLogin() {
-            const pos = document.getElementById('loginPositionSelect').value;
-            if (!pos) {
-                showToast("Please choose a position from the dropdown menu.", "warning");
-                return;
-            }
+        // Backward compatibility handlers
+        function onLoginPositionChange() {
+            const pos = document.getElementById('loginPositionSelect')?.value;
+            if (pos) directEnterPosition(pos);
+        }
 
-            const cfg = POSITIONS_CONFIG[pos];
-            const btn = document.getElementById('btnLoginSubmit');
-            if (btn) {
-                btn.disabled = true;
-                btn.innerText = "Verifying Details...";
-            }
-
-            try {
-                const payload = cfg.getPayload();
-                let res = null;
-
-                if (pos === 'PUBLIC') {
-                    // Public OTP verify
-                    res = await fetch(`${API_BASE}/auth/otp/verify`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    }).then(r => r.json()).catch(() => null);
-                } else {
-                    // Password login
-                    res = await fetch(`${API_BASE}/auth/login`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    }).then(r => r.json()).catch(() => null);
-                }
-
-                if (!res || !res.success || !res.data?.token) {
-                    const meta = ROLES_META[pos];
-                    if (meta) {
-                        currentToken = "eval-token-" + Date.now();
-                        currentUser = {
-                            id: 14,
-                            name: meta.name,
-                            role: pos,
-                            email: meta.email || (pos.toLowerCase() + '@mosje.gov.in')
-                        };
-                        currentRole = pos;
-                        showToast(`✓ Evaluation Session: Logged in as ${meta.name}`, "success");
-                    } else {
-                        const msg = (res && res.message) ? res.message : "Authentication failed. Server returned an error.";
-                        showToast(msg, "error");
-                        if (btn) { btn.disabled = false; btn.innerText = "Verify Details & Enter Dashboard →"; }
-                        return;
-                    }
-                } else {
-                    currentToken = res.data.token;
-                    currentUser = res.data.user;
-                    currentRole = pos;
-                }
-
-                // Hide Login Screen, Show App Shell
-                document.getElementById('screenLogin').style.display = 'none';
-                document.getElementById('appHeader').style.display = 'block';
-                document.getElementById('bottomNav').style.display = 'flex';
-
-                const meta = ROLES_META[pos];
-                document.getElementById('userGreeting').innerText = `Namaste, ${meta.name}`;
-                document.getElementById('roleBadge').innerText = meta.title;
-                document.getElementById('fabCamera').style.display = meta.hasFab ? 'flex' : 'none';
-
-                // Master Nav icon only for Master Admin
-                const navMaster = document.getElementById('navMaster');
-                if (navMaster) {
-                    navMaster.style.display = (pos === 'MASTER_ADMIN') ? 'flex' : 'none';
-                }
-
-                // Contractor Nav icon for Contractor
-                const navContractor = document.getElementById('navContractor');
-                if (navContractor) {
-                    navContractor.style.display = (pos === 'CONTRACTOR') ? 'flex' : 'none';
-                }
-
-                // Add Tender button only for Admins
-                const btnAdd = document.getElementById('btnAdminAddTender');
-                if (btnAdd) {
-                    btnAdd.style.display = (pos === 'MOSJE_ADMIN' || pos === 'MASTER_ADMIN') ? 'inline-flex' : 'none';
-                }
-
-                // Inspector Code box only for Inspector
-                const codeBox = document.getElementById('inspectorCodeBox');
-                if (codeBox) {
-                    codeBox.style.display = (pos === 'INSPECTOR') ? 'block' : 'none';
-                }
-
-                renderShortcuts(pos);
-                await loadHierarchyData();
-                await loadTenders();
-                await loadStats();
-
-                if (pos === 'MASTER_ADMIN') {
-                    switchTab('master');
-                } else if (pos === 'CONTRACTOR') {
-                    switchTab('contractor');
-                } else {
-                    switchTab('home');
-                }
-
-                showToast(`✓ Verified! Entered ${meta.title} dashboard`, 'success');
-            } catch (err) {
-                console.error("Login verification error:", err);
-                const isNetErr = err.message && (err.message.includes('fetch') || err.message.includes('Network') || err.message.includes('Failed'));
-                const detailMsg = isNetErr
-                    ? `⚠️ Unable to connect to backend at:\n${API_BASE}\n\n• If your Render.com cloud server was idle, it may be waking up (please allow ~30 seconds and retry).\n• You can also tap '⚙️ Server Settings' on the login screen to switch or verify the backend URL.`
-                    : `⚠️ Login error: ${err.message}`;
-                showToast("Connection Error: " + err.message, "error");
-                alert(detailMsg);
-            } finally {
-                if (btn) { btn.disabled = false; btn.innerText = "Verify Details & Enter Dashboard →"; }
-            }
+        function submitPositionLogin() {
+            const pos = document.getElementById('loginPositionSelect')?.value;
+            if (pos) directEnterPosition(pos);
         }
 
         // LOGOUT & RETURN TO POSITION DROPDOWN
@@ -3012,11 +2956,10 @@
             document.querySelectorAll('.tab-screen').forEach(s => s.style.display = 'none');
 
             document.getElementById('screenLogin').style.display = 'flex';
-            document.getElementById('loginPositionSelect').value = '';
-            document.getElementById('dynamicCredContainer').style.display = 'none';
-            document.getElementById('loginPromptPlaceholder').style.display = 'block';
+            const sel = document.getElementById('loginPositionSelect');
+            if (sel) sel.value = '';
 
-            showToast("Session closed. Select position to log in.", "info");
+            showToast("Session closed. Select any position to enter directly.", "info");
         }
 
         function handleDemoLogout() {

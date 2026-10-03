@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Official Position Login"
+                    android:text="⚡ Direct 1-Click Role Login"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_headline"
                     android:textStyle="bold" />
@@ -80,37 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xxs"
                     android:layout_marginBottom="@dimen/spacing_md"
-                    android:text="Select your official post from the dropdown below. Respective details will be loaded for authentication."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_caption" />
-
-                <!-- Position Dropdown (First Item) -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Official Position / Post:"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_caption"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/spnPosition"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="@dimen/spacing_xs"
-                    android:background="@drawable/bg_spinner_border"
-                    android:paddingHorizontal="@dimen/spacing_sm" />
-
-                <!-- Position Info Banner -->
-                <TextView
-                    android:id="@+id/tvPositionBanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_sm"
-                    android:layout_marginBottom="@dimen/spacing_xs"
-                    android:background="#F0F4F8"
-                    android:padding="@dimen/spacing_sm"
-                    android:text="Field Inspector • Mobile &amp; Inspection Code Flow | Nagpur District"
+                    android:text="Select any position from the dropdown menu to enter the application immediately without typing credentials."
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_caption" />
 
@@ -131,7 +101,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="🌐 Server: Cloud Live"
+                        android:text="🌐 Server: Cloud Live (24/7)"
                         android:textColor="#1E429F"
                         android:textSize="11sp"
                         android:singleLine="true"
@@ -149,164 +119,171 @@
                         android:padding="2dp" />
                 </LinearLayout>
 
-                <!-- Staff Login Form -->
-                <LinearLayout
-                    android:id="@+id/layoutStaffLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Official Email / Username"
-                        app:boxStrokeColor="@color/primary"
-                        app:hintTextColor="@color/primary">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:text="inspector.rajesh@mosje.gov.in"
-                            android:textColor="@color/text_primary" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:hint="Secure Password"
-                        app:boxStrokeColor="@color/primary"
-                        app:hintTextColor="@color/primary"
-                        app:passwordToggleEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-                            android:textColor="@color/text_primary" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilTotpCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_sm"
-                        android:hint="Google / Gov Authenticator 2FA (6 digits)"
-                        app:boxStrokeColor="@color/primary"
-                        app:hintTextColor="@color/primary">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etTotpCode"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="6"
-                            android:text="123456"
-                            android:textColor="@color/text_primary" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_sm"
-                        android:background="#FFF9C4"
-                        android:padding="@dimen/spacing_xs"
-                        android:text="✓ Task 12 Demo Account: Sync checks and credentials pre-loaded."
-                        android:textColor="#F57F17"
-                        android:textSize="@dimen/text_caption" />
-
-                    <Button
-                        android:id="@+id/btnStaffLogin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_lg"
-                        android:text="Verify Details &amp; Enter Dashboard →"
-                        style="@style/Widget.SmartInspection.Button" />
-                </LinearLayout>
-
-                <!-- Public OTP Login Form -->
-                <LinearLayout
-                    android:id="@+id/layoutPublicOtp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Mobile Number"
-                        app:prefixText="+91 "
-                        app:boxStrokeColor="@color/primary">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etPhone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="phone"
-                            android:maxLength="10"
-                            android:text="9821004567" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/btnRequestOtp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:text="Send OTP"
-                        style="@style/Widget.SmartInspection.Button" />
-
-                    <TextView
-                        android:id="@+id/tvOtpHint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_sm"
-                        android:textColor="@color/status_warning"
-                        android:textSize="@dimen/text_caption"
-                        android:visibility="gone" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:hint="Enter 6-digit OTP"
-                        app:boxStrokeColor="@color/primary">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etOtp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:visibility="visible" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/btnVerifyOtp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_md"
-                        android:text="Verify Details &amp; Enter Dashboard →"
-                        android:visibility="visible"
-                        style="@style/Widget.SmartInspection.Button" />
-                </LinearLayout>
-
+                <!-- Position Dropdown (Selection enters the app immediately) -->
                 <TextView
-                    android:id="@+id/tvNgoRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/spacing_lg"
-                    android:padding="@dimen/spacing_xs"
-                    android:text="Register as New NGO / Social Auditor →"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_caption"
+                    android:text="Select Position to Enter Directly:"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spnPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:background="@drawable/bg_spinner_border"
+                    android:paddingHorizontal="@dimen/spacing_sm" />
+
+                <!-- Position Info Banner -->
+                <TextView
+                    android:id="@+id/tvPositionBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:layout_marginBottom="@dimen/spacing_md"
+                    android:background="#F0F4F8"
+                    android:padding="@dimen/spacing_sm"
+                    android:text="👆 Tap the dropdown above or any quick role button below to enter directly."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <!-- OR Divider -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginVertical="6dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#E2E8F0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  OR TAP DIRECTLY BELOW  "
+                        android:textColor="#94A3B8"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="#E2E8F0" />
+                </LinearLayout>
+
+                <!-- Quick 1-Tap Role Buttons Grid -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="4"
+                    android:alignmentMode="alignMargins"
+                    android:columnOrderPreserved="false"
+                    android:layout_marginTop="6dp">
+
+                    <Button
+                        android:id="@+id/btnRoleMasterAdmin"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="👑 Master Admin"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#991B1B"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleInspector"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🔍 Field Inspector"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#EA580C"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleDistrict"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🏛️ District Officer"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#2563EB"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleState"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🏛️ State Officer"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#7C3AED"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleMosje"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🇮🇳 MoSJE Admin"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#0284C7"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleContractor"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🏢 Contractor"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#D97706"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRoleNgo"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="🤝 NGO Auditor"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#059669"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnRolePublic"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="👤 Public Citizen"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#4B5563"
+                        android:textColor="#FFFFFF" />
+                </GridLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
